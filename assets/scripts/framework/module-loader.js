@@ -109,18 +109,18 @@ var ModuleLoader = function () {
     // Public functions
     // =====================================
 
-    this.LoadModule = function (pathlist_or_path, callback) {
+    this.LoadModule = (function (pathlist_or_path, callback) {
         if (Array.isArray(pathlist_or_path))
             return loadModule_Array(pathlist_or_path, callback);
 
         return loadModule_Single(pathlist_or_path, callback);
-    };
+    }).bind(this);
 
-    this.IsModuleLoaded = function (path) {
+    this.IsModuleLoaded = (function (path) {
         return (path in _modules);
-    };
+    }).bind(this);
 
-    this.RegisterModule = function (path, module) {
+    this.RegisterModule = (function (path, module) {
         if (module === undefined || module == null) return;
 
         _modules[path] = module;
@@ -133,7 +133,7 @@ var ModuleLoader = function () {
                 callback(mod, mod.module);
             }
         }
-    };
+    }).bind(this);
 };
 
 
