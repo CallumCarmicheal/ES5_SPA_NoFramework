@@ -1,0 +1,17 @@
+Module Loader:
+    ✔ Basic implementation with a sample test @done(21-02-18 02:31)
+    ☐ Advanced implementation with multiple dependancies
+
+Page Module:
+    ☐ Basic rendering
+    \ Just render a simple html string
+    ☐ Advanced Rendering 
+    \ Same as above but will reload when a variable changes
+    ☐ Tracked variables
+    \ Trigger a re-render when a variable changes
+
+Router:
+    ☐ Basic path checking (without argumemtns)
+    ☐ Regex builder for argument based paths
+    \ users/{userid}/view
+
