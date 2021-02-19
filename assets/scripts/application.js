@@ -1,20 +1,17 @@
 var modules = Window.Framework.Modules;
-var index = null;
+var index = null, register = null, login = null;
 
 (function () {
-    modules.LoadModule("pages/index.js", function (module, _index) {
-        // Error handling
-        if (module.error !== null) {
-            console.error("Failed to load index page module!", module);
-            return;
-        }
+    modules.LoadModule(["pages/index.js", "pages/login.js", "pages/register.js"], function (modules) {
+        index = modules["pages/index.js"].module;
+        register = modules["pages/register.js"].module;
+        login = modules["pages/login.js"].module;
 
-        // 
-        this.index = _index;
         loaded();
     });
 
     function loaded() {
-        console.log("Loaded!", index);
+        console.log("Everything loaded event!", { index: index, register: register, login: login });
     }
 })();
+
