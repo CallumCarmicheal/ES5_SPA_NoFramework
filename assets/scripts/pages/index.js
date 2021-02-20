@@ -6,6 +6,8 @@
         function IndexPage() {
             Element.call(this); // base();
 
+            this.state('increment', false, 0);
+
             var incr = 0;
 
             this.getHtml = function() {
@@ -16,8 +18,17 @@
             };
 
             this.btnIncr_Click = function(sender, event) {
-                this.ids['incr'].innerHTML = "" + (++ incr);
+                this.increment++;
             };
+
+            this.loaded = function() {
+                this.ids['incr'].innerHTML = "" + (this.increment);
+
+                this.g_Variables["increment"].elements.push({
+                    element: this.ids['incr'],
+                    format: null
+                })
+            }
         }
 
         // Circle derives from Shape
