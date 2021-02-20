@@ -1,17 +1,18 @@
-var modules = Window.Framework.Modules;
-var index = null, register = null, login = null;
 
 (function () {
+    var modules = Window.Framework.Modules;
+    var Index = null, Register = null, Login = null;
+
     modules.LoadModule(["pages/index.js", "pages/login.js", "pages/register.js"], function (modules) {
-        index = modules["pages/index.js"].module;
-        register = modules["pages/register.js"].module;
-        login = modules["pages/login.js"].module;
+        // eslint-disable-next-line no-unused-vars
+        Index = modules["pages/index.js"].module;
+        Register = modules["pages/register.js"].module;
+        Login = modules["pages/login.js"].module;
 
-        loaded();
+
+        // Application loaded
+        var indexPage = new Index();
+        indexPage.render();
     });
-
-    function loaded() {
-        console.log("Everything loaded event!", { index: index, register: register, login: login });
-    }
 })();
 
