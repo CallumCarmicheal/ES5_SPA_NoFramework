@@ -6,28 +6,41 @@
         function IndexPage() {
             Element.call(this); // base();
 
+
             this.state('increment', false, 0);
+            this.state('increment2', false, 0);
+            this.state('increment3', false, 0);
+            this.state('stringTest', false, "");
 
             var incr = 0;
 
             this.getHtml = function() {
                 return '\
-                   <button class="btn btn-primary" data-bind="[click: btnIncr_Click]"> Click </button>\
-                   <p> Auto update = $(increment), Not done yet </p>\
-                   <p> Triggered update = <span data-id="incr" /></p>';
+                   <button class="btn btn-primary" data-bind="[click: btnIncr_Click]"> increment </button>\
+                   <button class="btn btn-primary" data-bind="[click: btnIncr2_Click]"> increment2 </button>\
+                   <button class="btn btn-primary" data-bind="[click: btnIncr3_Click]"> increment3 </button>\
+                   <button class="btn btn-primary" data-bind="[click: btnStringTest_Click]"> string test </button>\
+                   <p> Auto update = $(increment) </p>\
+                   <p> Multiple variables test update = $(increment), $(increment2) + $(increment3) </p>\
+                   <p> String test = $(stringTest) </p>';
             };
 
             this.btnIncr_Click = function(sender, event) {
                 this.increment++;
             };
+            this.btnIncr2_Click = function(sender, event) {
+                this.increment2++;
+            };
+            this.btnIncr3_Click = function(sender, event) {
+                this.increment3++;
+            };
+            this.btnStringTest_Click = function(sender, event) {
+                this.stringTest += "+";
+                console.log(this);
+            };
 
             this.loaded = function() {
-                this.ids['incr'].innerHTML = "" + (this.increment);
-
-                this.g_Variables["increment"].elements.push({
-                    element: this.ids['incr'],
-                    format: null
-                })
+                //
             }
         }
 
