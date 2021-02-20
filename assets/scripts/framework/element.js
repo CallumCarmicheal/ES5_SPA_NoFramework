@@ -123,10 +123,14 @@
                     if (_variables[name].useHtml) {
                         var splitHtml = element.innerHTML.split(matches[0])
                         parts = [splitHtml[0], splitHtml[1]];
+
+                        element.innerHTML = parts[0] + _variables[name].value + parts[1]
                     }
                     else {
                         var splitText = element.innerText.split(matches[0])
                         parts = [splitText[0], splitText[1]];
+
+                        element.innerText = parts[0] + _variables[name].value + parts[1]
                     }
 
                     _variables[name].elements.push({
