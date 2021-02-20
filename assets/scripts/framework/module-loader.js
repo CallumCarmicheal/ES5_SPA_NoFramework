@@ -90,7 +90,7 @@
 
                     // Load the script if the request was valid
                     if (textStatus === "success") {
-                        createJsElement(data);
+                        // createJsElement(data);
                     } else {
                         errorFn(jqXMLHttpRequest, textStatus, null);
                     }
@@ -143,10 +143,9 @@
 
                 // textStatus: "success", "notmodified", "nocontent", "error", "timeout", "abort", or "parsererror"
                 success: function (data, textStatus, jqXMLHttpRequest) {
-
                     // Load the script if the request was valid
                     if (textStatus === "success") {
-                        createJsElement(data);
+                        // createJsElement(data);
                         if (isFunction(callback))
                             callback(textStatus, null);
                     } else {
@@ -168,9 +167,10 @@
 
             if (path in _listeners) {
                 var mod = getModule(path);
+                var callbacks = _listeners[path];//.slice(0, _listeners[path].length - 1);
 
-                for (var index = 0; index < _listeners[path].length; index++) {
-                    var callback = _listeners[path][index];
+                for (var index = 0; index < callbacks.length; index++) {
+                    var callback = callbacks[index];
                     callback(mod, mod.module);
                 }
             }
