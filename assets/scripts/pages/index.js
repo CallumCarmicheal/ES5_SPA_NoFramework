@@ -1,6 +1,33 @@
 (function () {
     var isFunction = Window.isFunction; // es lint could not find this function for some reason
 
+    Window.Framework.Modules.LoadModule('framework/element.js', function(mod, Element) {
+        // https://eli.thegreenplace.net/2013/10/22/classical-inheritance-in-javascript-es5
+        function IndexPage() {
+            Element.call(this); // base();
+
+            var incr = 0;
+
+            this.getHtml = function() {
+                return '\
+                   <button class="btn btn-primary" data-bind="[click: btnIncr_Click]"> Click </button>\
+                   <p> Auto update = $(increment), Not done yet </p>\
+                   <p> Triggered update = <span data-id="incr" /></p>';
+            };
+
+            this.btnIncr_Click = function(sender, event) {
+                this.ids['incr'].innerHTML = "" + (++ incr);
+            };
+        }
+
+        // Circle derives from Shape
+        IndexPage.prototype = Object.create(Element.prototype);
+        IndexPage.prototype.constructor = IndexPage;
+
+        Window.Framework.Modules.RegisterModule('pages/index.js', IndexPage);
+    });
+
+    /*
     function index() {
         var increment = 0;
         var element = null;
@@ -64,5 +91,5 @@
         };
     }
 
-    Window.Framework.Modules.RegisterModule('pages/index.js', index);
+    /**/
 })();
